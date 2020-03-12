@@ -52,6 +52,9 @@ export default {
 }
 ```
 
+Every new comoponent requires a component story in the Components API section.
+If the UX symbol is a composite of more than 1 component, it also requires a Design Guidelines story.
+
 ## Cheatsheet
 
 In order to improve the components discoverability and map each UX symbol to the relevant components used, we've created a [Cheatsheet](https://wix-style-react.now.sh/?path=/story/introduction-cheatsheet--components-cheatsheet) with all the components within the library.
