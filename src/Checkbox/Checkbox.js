@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CheckboxChecked from 'wix-ui-icons-common/system/CheckboxChecked';
 import CheckboxIndeterminate from 'wix-ui-icons-common/system/CheckboxIndeterminate';
-import Label from '../Label';
 import styles from './Checkbox.st.css';
-import textStyles from '../Text/Text.st.css';
+import Text from '../Text';
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 
 import { generateID } from '../utils/generateId';
@@ -14,7 +13,7 @@ import { dataHooks } from './constants';
 
 /** a simple WixStyle checkbox */
 class Checkbox extends React.PureComponent {
-  //TODO fix me please. We need to get away from ids.
+  // TODO fix me please. We need to get away from ids.
   _id = `${Checkbox.displayName}-${generateID()}`;
 
   _getDataAttributes = () => {
@@ -84,12 +83,7 @@ class Checkbox extends React.PureComponent {
           style={{ display: 'none' }}
         />
 
-        <Label
-          for={id}
-          dataHook={dataHooks.label}
-          className={styles.label}
-          size={size}
-        >
+        <label id={id} data-hook={dataHooks.label} className={styles.label}>
           <Tooltip
             upgrade
             dataHook={dataHooks.boxTooltip}
@@ -117,23 +111,17 @@ class Checkbox extends React.PureComponent {
             </div>
           </Tooltip>
           {children && (
-            <div
-              {...textStyles(
-                'root',
-                {
-                  size,
-                  skin: disabled ? 'disabled' : 'standard',
-                  weight: 'thin',
-                },
-                { className: styles.children },
-              )}
-              data-hook={dataHooks.children}
-              onClick={e => e.stopPropagation()}
+            <Text
+              size={size}
+              skin={disabled ? 'disabled' : 'standard'}
+              weight="thin"
+              dataHook={dataHooks.children}
+              className={styles.children}
             >
               {children}
-            </div>
+            </Text>
           )}
-        </Label>
+        </label>
       </div>
     );
   }
