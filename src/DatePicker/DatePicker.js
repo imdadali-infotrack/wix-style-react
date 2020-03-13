@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Popper from 'popper.js';
+
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import isSameDay from 'date-fns/is_same_day';
 import setYear from 'date-fns/set_year';
 import setMonth from 'date-fns/set_month';
 import setDate from 'date-fns/set_date';
 
+import Popover from '../Popover';
 import Calendar from '../Calendar';
 
-import styles from './DatePicker.scss';
 import DateInput from '../DateInput';
 
 import deprecationLog from '../utils/deprecationLog';
@@ -42,6 +42,9 @@ export default class DatePicker extends React.PureComponent {
     zIndex: 1,
     disabled: false,
     error: false,
+    popoverProps: {
+      placement: 'top-start',
+    },
   };
 
   constructor(props) {
@@ -61,27 +64,13 @@ export default class DatePicker extends React.PureComponent {
     };
   }
 
-  componentDidMount() {
-    this._popper = new Popper(this.inputRef, this.calendarRef, {
-      placement: 'top-start',
-    });
-  }
-
-  componentWillUnmount() {
-    this._popper.destroy();
-    super.componentWillUnmount();
-  }
-
   openCalendar = () => {
     if (!this.state.isOpen) {
-      this.setState(
-        {
-          isOpen: true,
-          isDateInputFocusable: false,
-          value: this.props.value || new Date(),
-        },
-        () => this._popper.scheduleUpdate(),
-      );
+      this.setState({
+        isOpen: true,
+        isDateInputFocusable: false,
+        value: this.props.value || new Date(),
+      });
     }
   };
 
@@ -193,10 +182,6 @@ export default class DatePicker extends React.PureComponent {
     );
   };
 
-  _setInputRef = ref => (this.inputRef = ref);
-
-  _setCalendarRef = ref => (this.calendarRef = ref);
-
   render() {
     const {
       showMonthDropdown,
@@ -211,11 +196,13 @@ export default class DatePicker extends React.PureComponent {
       locale,
       zIndex,
       dataHook,
+      popoverProps,
     } = this.props;
 
     const { isOpen, value } = this.state;
 
     const calendarProps = {
+      dataHook: 'date-picker-calendar',
       locale,
       showMonthDropdown,
       showYearDropdown,
@@ -230,27 +217,28 @@ export default class DatePicker extends React.PureComponent {
     };
 
     return (
-      <div data-hook={dataHook} style={{ width }} className={styles.root}>
-        <div ref={this._setInputRef}>
-          <DayPickerInput
-            component={this._renderInputWithRefForward()}
-            keepFocus={false}
-          />
-        </div>
-
-        <div
-          ref={this._setCalendarRef}
-          data-hook={calendarDataHook}
-          style={{ zIndex }}
-        >
-          {isOpen && (
-            <Calendar
-              className={styles.datePickerCalendar}
-              {...calendarProps}
+      <Popover
+        dataHook={dataHook}
+        onClickOutside={this.onClickOutside}
+        appendTo="parent"
+        shown={isOpen}
+        zIndex={zIndex}
+        {...popoverProps}
+      >
+        <Popover.Element>
+          <div style={{ width }}>
+            <DayPickerInput
+              component={this._renderInputWithRefForward()}
+              keepFocus={false}
             />
-          )}
-        </div>
-      </div>
+          </div>
+        </Popover.Element>
+        <Popover.Content>
+          <div data-hook={calendarDataHook}>
+            <Calendar {...calendarProps} />
+          </div>
+        </Popover.Content>
+      </Popover>
     );
   }
 }
