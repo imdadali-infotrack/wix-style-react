@@ -26,9 +26,13 @@ const datePickerDriverFactory = ({ element }) => {
     ),
   };
 
+  // here we have a dirty hack for getting input element directly
+  // this is not the best wayt to do it, but knowing that we exposed
+  // input datahook - we cannot change this for now.
   const inputElement = popoverDriverFactory({ element })
     .getTargetElement()
-    .querySelector('.root');
+    .querySelector('[data-size]');
+
   const inputDriver = inputDriverFactory({ element: inputElement });
 
   const driver = {
@@ -37,7 +41,7 @@ const datePickerDriverFactory = ({ element }) => {
     getWidth: () =>
       popoverDriverFactory({ element })
         .getTargetElement()
-        .querySelector('[data-hook="date-picker-input"]').style.width,
+        .querySelector('[data-hook="date-picker-input-container"]').style.width,
   };
 
   return {

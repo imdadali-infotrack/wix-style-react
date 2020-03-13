@@ -9,7 +9,6 @@ import setDate from 'date-fns/set_date';
 
 import Popover from '../Popover';
 import Calendar from '../Calendar';
-
 import DateInput from '../DateInput';
 
 import deprecationLog from '../utils/deprecationLog';
@@ -42,8 +41,10 @@ export default class DatePicker extends React.PureComponent {
     zIndex: 1,
     disabled: false,
     error: false,
+    inputDataHook: 'date-picker-input',
     popoverProps: {
       placement: 'top-start',
+      zIndex: 1,
     },
   };
 
@@ -226,7 +227,7 @@ export default class DatePicker extends React.PureComponent {
         {...popoverProps}
       >
         <Popover.Element>
-          <div style={{ width }} data-hook="date-picker-input">
+          <div style={{ width }} data-hook="date-picker-input-container">
             <DayPickerInput
               component={this._renderInputWithRefForward()}
               keepFocus={false}
