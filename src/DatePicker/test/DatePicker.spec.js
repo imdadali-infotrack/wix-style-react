@@ -358,16 +358,23 @@ describe('DatePicker', () => {
     });
 
     describe('`width` prop', () => {
-      it('should be 150 by default', () => {
-        const { calendarDriver } = createDriver(<DatePicker onChange={noop} />);
-        expect(calendarDriver.getWidth()).toBe('150px');
+      it('should set 150px by default to Input', () => {
+        const { driver, inputDriver } = createDriver(
+          <DatePicker onChange={noop} />,
+        );
+        inputDriver.trigger('click');
+
+        expect(driver.getWidth()).toBe('150px');
       });
 
-      it('should allow to be changed', () => {
-        const { calendarDriver } = createDriver(
+      it('should allow to be changed to Input', () => {
+        const { driver, inputDriver } = createDriver(
           <DatePicker onChange={noop} width={4} />,
         );
-        expect(calendarDriver.getWidth()).toBe('4px');
+
+        inputDriver.trigger('click');
+
+        expect(driver.getWidth()).toBe('4px');
       });
     });
 

@@ -219,14 +219,14 @@ export default class DatePicker extends React.PureComponent {
     return (
       <Popover
         dataHook={dataHook}
-        onClickOutside={this.onClickOutside}
+        onClickOutside={this.closeCalendar}
         appendTo="parent"
         shown={isOpen}
         zIndex={zIndex}
         {...popoverProps}
       >
         <Popover.Element>
-          <div style={{ width }}>
+          <div style={{ width }} data-hook="date-picker-input">
             <DayPickerInput
               component={this._renderInputWithRefForward()}
               keepFocus={false}
