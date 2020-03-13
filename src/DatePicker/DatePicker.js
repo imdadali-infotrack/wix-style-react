@@ -7,7 +7,6 @@ import setYear from 'date-fns/set_year';
 import setMonth from 'date-fns/set_month';
 import setDate from 'date-fns/set_date';
 
-import WixComponent from '../BaseComponents/WixComponent';
 import Calendar from '../Calendar';
 
 import styles from './DatePicker.scss';
@@ -31,7 +30,7 @@ import deprecationLog from '../utils/deprecationLog';
  *
  */
 
-export default class DatePicker extends WixComponent {
+export default class DatePicker extends React.PureComponent {
   static displayName = 'DatePicker';
 
   static defaultProps = {
@@ -63,8 +62,6 @@ export default class DatePicker extends WixComponent {
   }
 
   componentDidMount() {
-    super.componentDidMount();
-
     this._popper = new Popper(this.inputRef, this.calendarRef, {
       placement: 'top-start',
     });
@@ -213,6 +210,7 @@ export default class DatePicker extends WixComponent {
       twoMonths,
       locale,
       zIndex,
+      dataHook,
     } = this.props;
 
     const { isOpen, value } = this.state;
@@ -232,7 +230,7 @@ export default class DatePicker extends WixComponent {
     };
 
     return (
-      <div style={{ width }} className={styles.root}>
+      <div data-hook={dataHook} style={{ width }} className={styles.root}>
         <div ref={this._setInputRef}>
           <DayPickerInput
             component={this._renderInputWithRefForward()}
