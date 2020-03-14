@@ -1,0 +1,22 @@
+@import './src/colors';
+
+.unit {
+  height: 140px;
+}
+
+.cell {
+  height: 80px;
+  width: 80px;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid transparent;
+  display: flex;
+
+  span {
+    margin-top: auto;
+  }
+}
+
+.dark-border {
+  border-color: $D30
+}
