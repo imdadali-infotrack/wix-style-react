@@ -5,7 +5,6 @@ import { Languages } from 'wix-ui-icons-common';
 import { storySettings } from './storySettings';
 import {
   api,
-  description,
   divider,
   header,
   importExample,
@@ -14,10 +13,13 @@ import {
   tabs,
   testkit,
   title,
+  example as baseExample,
   code as baseCode,
-} from 'wix-storybook-utils/dist/src/Sections';
+} from 'wix-storybook-utils/Sections';
 import * as examples from './examples';
 import allComponents from '../../../stories/utils/allComponents';
+
+const example = config => baseExample({ components: allComponents, ...config });
 
 const code = config =>
   baseCode({
@@ -74,7 +76,7 @@ export default {
 
     tabs([
       tab({
-        title: 'Usage',
+        title: 'Description',
         sections: [
           importExample("import Checkbox from 'wix-style-react/Checkbox';"),
 
@@ -82,23 +84,21 @@ export default {
 
           title('Examples'),
 
-          code({
-            title: 'Simple generic use',
-            source: examples.simple,
+          example({
+            title: 'Sizes',
+            text: 'Checkbox has two sizes: `medium` (default) and `small`.',
+            source: examples.sizes,
           }),
 
-          code({
-            title: 'With Error',
+          example({
+            title: 'Error',
             source: examples.error,
           }),
 
-          description({
-            title: 'Using selectionArea',
+          example({
+            title: 'Selection Area',
             text:
               'A selection area makes is easier to select the checkbox, with a background  as an indicator to the click area',
-          }),
-
-          code({
             source: examples.selectionArea,
           }),
         ],
