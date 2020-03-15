@@ -12,13 +12,13 @@ import Checkbox from '../Checkbox';
 import { labelTextSizes } from '../constants';
 
 describe('Checkbox', () => {
-  // describe('[sync]', () => {
-  //   runTests(createRendererWithDriver(checkboxDriverFactory));
-  // });
-
-  describe('[async]', () => {
-    runTests(createRendererWithUniDriver(checkboxUniDriverFactory));
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(checkboxDriverFactory));
   });
+
+  // describe('[async]', () => {
+  //   runTests(createRendererWithUniDriver(checkboxUniDriverFactory));
+  // });
 
   function runTests(render) {
     afterEach(() => cleanup());

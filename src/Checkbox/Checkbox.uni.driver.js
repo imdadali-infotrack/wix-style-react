@@ -1,6 +1,5 @@
 import { Simulate } from 'react-dom/test-utils';
 import { baseUniDriverFactory, ReactBase } from '../../test/utils/unidriver';
-import { labelUniDriverFactory } from 'wix-ui-backoffice/dist/src/components/Label/Label.uni.driver';
 import { textUniDriverFactory } from '../Text/Text.uni.driver';
 import { tooltipDriverFactory } from '../Tooltip/TooltipNext/Tooltip.uni.driver';
 import { dataHooks } from './constants';
@@ -55,6 +54,5 @@ export const checkboxUniDriverFactory = (base, body) => {
     },
     getLabelText: labelTextDriver.getText,
     getLabelTextSize: labelTextDriver.getSize,
-    getLabel: base.$(`[data-hook="${dataHooks.label}"]`),
   };
 };
