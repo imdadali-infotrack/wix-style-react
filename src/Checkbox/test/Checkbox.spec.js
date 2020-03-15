@@ -16,9 +16,9 @@ describe('Checkbox', () => {
     runTests(createRendererWithDriver(checkboxDriverFactory));
   });
 
-  // describe('[async]', () => {
-  //   runTests(createRendererWithUniDriver(checkboxUniDriverFactory));
-  // });
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(checkboxUniDriverFactory));
+  });
 
   function runTests(render) {
     afterEach(() => cleanup());
