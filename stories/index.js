@@ -151,11 +151,11 @@ require('./WIP');
 require('../src/beta/PopoverMenu/docs/index.story');
 
 // Styling
-require('./Colors/index.story');
 require('../src/Typography/docs/cssClasses.story');
 require('../src/FontUpgrade/docs/index.story');
 
 // 1. Foundations
+require('./Colors/index.story');
 require('../src/Typography/docs/index.story'); // 1.2 Typography
 require('../src/new-icons/docs'); // 1.4 Icons
 

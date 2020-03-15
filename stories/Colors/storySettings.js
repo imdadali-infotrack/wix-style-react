@@ -1,6 +1,6 @@
 import { Category } from '../storiesHierarchy';
 
 export const storySettings = {
-  category: Category.STYLING,
+  category: Category.FOUNDATION,
   storyName: '1.1 Colors',
 };

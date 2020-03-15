@@ -7,34 +7,11 @@ import styles from './colorsStory.scss';
 import colors from '../../src/colors.scss';
 import Text from '../../src/Text';
 import Box from '../../src/Box';
+import rgba_to_hex8 from '../../src/Foundation/stylable/mixins/rgba_to_hex8';
 
 const empty = {};
 const lightText = true;
 const darkBorder = true;
-
-function rgba2hex(orig) {
-  let a,
-    rgb = orig
-      .replace(/\s/g, '')
-      .match(/^rgba?\((\d+),(\d+),(\d+),?([^,\s)]+)?/i),
-    alpha = ((rgb && rgb[4]) || '').trim(),
-    hex = rgb
-      ? (rgb[1] | (1 << 8)).toString(16).slice(1) +
-        (rgb[2] | (1 << 8)).toString(16).slice(1) +
-        (rgb[3] | (1 << 8)).toString(16).slice(1)
-      : orig;
-
-  if (alpha !== '') {
-    a = alpha;
-  } else {
-    a = 'FF';
-  }
-  // multiply before convert to HEX
-  a = ((a * 255) | (1 << 8)).toString(16).slice(1);
-  hex = hex + a;
-
-  return '#' + hex.toUpperCase();
-}
 
 const colorsTable = [
   {
@@ -303,22 +280,22 @@ const colorsTable = [
       {
         name: 'D10-05',
         darkBorder,
-        rgba2hex,
+        rgba_to_hex8,
       },
       {
         name: 'D10-10',
         darkBorder,
-        rgba2hex,
+        rgba_to_hex8,
       },
       {
         name: 'D10-20',
         darkBorder,
-        rgba2hex,
+        rgba_to_hex8,
       },
       {
         name: 'D10-30',
         darkBorder,
-        rgba2hex,
+        rgba_to_hex8,
       },
     ],
   },
@@ -368,8 +345,10 @@ export default {
                     <Text size="small">{unit.name}</Text>
                   </Box>
                   <Box>
-                    {unit.rgba2hex && (
-                      <Text size="small">{rgba2hex(colors[unit.name])}</Text>
+                    {unit.rgba_to_hex8 && (
+                      <Text size="small">
+                        {rgba_to_hex8(colors[unit.name])}
+                      </Text>
                     )}
                   </Box>
                   <Box>
