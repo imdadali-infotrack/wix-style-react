@@ -81,7 +81,11 @@ class Checkbox extends React.PureComponent {
           style={{ display: 'none' }}
         />
 
-        <label for={id} data-hook={dataHooks.label} className={styles.label}>
+        <label
+          htmlFor={id}
+          data-hook={dataHooks.label}
+          className={styles.label}
+        >
           <Tooltip
             upgrade
             dataHook={dataHooks.boxTooltip}
