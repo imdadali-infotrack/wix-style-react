@@ -101,6 +101,11 @@ export default {
               'A selection area makes is easier to select the checkbox, with a background  as an indicator to the click area',
             source: examples.selectionArea,
           }),
+
+          example({
+            title: 'Controlled checkbox',
+            source: examples.controlledCheckbox,
+          }),
         ],
       }),
       ...[

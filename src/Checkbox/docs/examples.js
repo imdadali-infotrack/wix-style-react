@@ -32,3 +32,11 @@ export const selectionArea = `
     </Cell>
 </Layout>
 `;
+
+export const controlledCheckbox = `
+() => {
+  const [checked , setChecked ] = React.useState(false);
+
+  return <Checkbox checked={checked} onChange={() => setChecked(!checked)}>Hello World!</Checkbox>
+}
+`;

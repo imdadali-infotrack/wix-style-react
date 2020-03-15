@@ -48,26 +48,24 @@ class Checkbox extends React.PureComponent {
       focusableOnBlur,
     } = this.props;
 
+    const rootStyles = {
+      vAlign,
+      selectionArea,
+      disabled,
+      error: hasError && !disabled,
+      selection: indeterminate
+        ? 'indeterminate'
+        : checked
+        ? 'checked'
+        : 'unchecked',
+      indeterminate,
+      checkboxhover: hover,
+    };
+
     return (
       <div
         data-hook={dataHook}
-        {...styles(
-          'root',
-          {
-            vAlign,
-            selectionArea,
-            disabled,
-            error: hasError && !disabled,
-            selection: indeterminate
-              ? 'indeterminate'
-              : checked
-              ? 'checked'
-              : 'unchecked',
-            indeterminate,
-            checkboxhover: hover,
-          },
-          this.props,
-        )}
+        {...styles('root', rootStyles, this.props)}
         onFocus={focusableOnFocus}
         onBlur={focusableOnBlur}
         tabIndex={disabled ? null : 0}
@@ -83,7 +81,7 @@ class Checkbox extends React.PureComponent {
           style={{ display: 'none' }}
         />
 
-        <label id={id} data-hook={dataHooks.label} className={styles.label}>
+        <label for={id} data-hook={dataHooks.label} className={styles.label}>
           <Tooltip
             upgrade
             dataHook={dataHooks.boxTooltip}
