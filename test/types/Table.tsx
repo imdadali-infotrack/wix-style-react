@@ -90,6 +90,7 @@ function typedTable() {
 function testInstanceMethods() {
   const instance = new Table({ columns: [] });
   instance.setSelectedIds([1, 2, 3]);
+  instance.setSelectedIds(['row1', 'row2', 'row3']);
 }
 
 async function testkits() {

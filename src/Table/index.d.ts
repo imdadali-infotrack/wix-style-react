@@ -24,7 +24,7 @@ export default class Table<RowData = RowDataDefaultType> extends React.Component
   static EmptyState: typeof EmptyState;
   static BulkSelectionCheckbox: typeof BulkSelectionCheckbox;
 
-  setSelectedIds: (selectedIds: any) => void;
+  setSelectedIds: (selectedIds: TableProps['selectedIds']) => void;
 }
 
 declare const ToolbarContainer: React.SFC;
