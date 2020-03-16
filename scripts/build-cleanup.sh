@@ -24,6 +24,7 @@ protractor.conf.js
 .ci_config
 wallaby.js
 protractor2.conf.js
+applitools.private.config.js
 "
 VAR="-name "
 for ELEMENT in $EXCLUDE_FILES; do
