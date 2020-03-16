@@ -112,19 +112,19 @@ describe('Checkbox', () => {
     describe('Label', () => {
       it('should have the correct label text', async () => {
         const { driver } = render(<Checkbox>Info</Checkbox>);
-        expect(await driver.getLabelText()).toEqual('Info');
+        expect(await driver.getLabel()).toEqual('Info');
       });
 
       it('should text size "medium" by default', async () => {
         const { driver } = render(<Checkbox>Info</Checkbox>);
-        expect(await driver.getLabelTextSize()).toEqual(labelTextSizes.medium);
+        expect(await driver.getLabelSize()).toEqual(labelTextSizes.medium);
       });
 
       it.each(Object.values(labelTextSizes))(
         'text be %s when giving size prop "%s"',
         async size => {
           const { driver } = render(<Checkbox size={size}>Info</Checkbox>);
-          expect(await driver.getLabelTextSize()).toEqual(size);
+          expect(await driver.getLabelSize()).toEqual(size);
         },
       );
     });

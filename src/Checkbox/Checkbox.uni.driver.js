@@ -52,7 +52,7 @@ export const checkboxUniDriverFactory = (base, body) => {
         throw new Error('Failed getting checkbox error message');
       }
     },
-    getLabelText: labelTextDriver.getText,
-    getLabelTextSize: labelTextDriver.getSize,
+    getLabel: labelTextDriver.getText,
+    getLabelSize: labelTextDriver.getSize,
   };
 };

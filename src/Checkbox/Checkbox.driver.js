@@ -11,11 +11,10 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
   const input = () => element.querySelector('input');
   const checkbox = () => element.querySelector(dataHooks.box);
   const isChecked = () => input().checked;
-  const labelText = element.querySelector(
-    `[data-hook="${dataHooks.children}"]`,
-  );
+  const labelText = () =>
+    element.querySelector(`[data-hook="${dataHooks.children}"]`);
 
-  const labelTextDriver = textDriverFactory({ element: labelText });
+  const labelTextDriver = textDriverFactory({ element: labelText() });
 
   const getErrorMessage = async () => {
     const tooltipTestkit = tooltipDriverFactory({
@@ -50,8 +49,8 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
       DATA_ATTR.CHECK_TYPES.INDETERMINATE,
     hasError: () => element.getAttribute(DATA_ATTR.DATA_HAS_ERROR) === 'true',
     getErrorMessage,
-    getLabelText: labelTextDriver.getText,
-    getLabelTextSize: labelTextDriver.getSize,
+    getLabel: labelTextDriver.getText,
+    getLabelSize: labelTextDriver.getSize,
   };
 };
 

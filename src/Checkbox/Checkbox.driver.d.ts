@@ -15,7 +15,7 @@ export interface CheckboxDriver extends BaseDriver {
   isIndeterminate(): () => boolean;
   hasError(): boolean;
   getLabel(): string;
-  getLabelText(): string,
-  getLabelTextSize(): CheckboxLabelSize,
+  getLabel(): string,
+  getLabelSize(): CheckboxLabelSize,
   getErrorMessage(): Promise<string>;
 }
