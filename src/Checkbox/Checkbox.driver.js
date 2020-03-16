@@ -6,13 +6,14 @@ import * as DATA_ATTR from './DataAttr';
 
 const checkboxDriverFactory = ({ element, eventTrigger }) => {
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
-  const input = () => element.querySelector('input');
-  const checkbox = () => element.querySelector(dataHooks.box);
-  const isChecked = () => input().checked;
-  const labelText = () =>
-    element.querySelector(`[data-hook="${dataHooks.children}"]`);
+  const input = element.querySelector('input');
+  const checkbox = element.querySelector(dataHooks.box);
+  const isChecked = input.checked;
+  const labelText = element.querySelector(
+    `[data-hook="${dataHooks.children}"]`,
+  );
 
-  const labelTextDriver = textDriverFactory({ element: labelText() });
+  const labelTextDriver = textDriverFactory({ element: labelText });
 
   const getErrorMessage = async () => {
     const tooltipTestkit = tooltipDriverFactory({
@@ -33,14 +34,12 @@ const checkboxDriverFactory = ({ element, eventTrigger }) => {
   return {
     exists: () => !!element,
     click: () =>
-      eventTrigger.change(input(), {
-        target: { checked: !isChecked() },
-      }),
+      eventTrigger.change(input, { target: { checked: !isChecked } }),
     /** trigger focus on the element */
-    focus: () => eventTrigger.focus(checkbox()),
+    focus: () => eventTrigger.focus(checkbox),
     /** trigger blur on the element */
-    blur: () => eventTrigger.blur(checkbox()),
-    isChecked: () => isChecked(),
+    blur: () => eventTrigger.blur(checkbox),
+    isChecked: () => isChecked,
     isDisabled: () => element.getAttribute(DATA_ATTR.DATA_DISABLED) === 'true',
     isIndeterminate: () =>
       element.getAttribute(DATA_ATTR.DATA_CHECK_TYPE) ===
