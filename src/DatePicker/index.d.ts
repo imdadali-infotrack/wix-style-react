@@ -1,8 +1,9 @@
 import * as React from 'react';
-import {WixComponentProps} from "../BaseComponents/WixComponent";
 import {CalendarProps} from "../Calendar";
+import { OmitPolyfill } from '../common';
+import { PopoverProps } from '../Popover';
 
-export interface DatePickerProps extends WixComponentProps, CalendarProps {
+export interface DatePickerProps extends  CalendarProps {
   customInput?: React.ReactNode,
   inputProps?: {},
   dateFormat?: string | Function,
@@ -19,6 +20,16 @@ export interface DatePickerProps extends WixComponentProps, CalendarProps {
   errorMessage?: React.ReactNode,
   width?: number | string,
   zIndex?: number,
+  popoverProps?: OmitPolyfill<
+  PopoverProps,
+  | 'showArrow'
+  | 'fixed'
+  | 'dataHook'
+  | 'shown'
+  | 'placement'
+  | 'appendTo'
+  | 'onClickOutside'
+>
 }
 
 export default class DatePicker extends React.PureComponent<DatePickerProps> {
