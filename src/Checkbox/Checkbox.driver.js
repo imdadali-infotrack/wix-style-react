@@ -1,5 +1,3 @@
-import { labelDriverFactory } from 'wix-ui-backoffice/dist/src/components/Label/Label.driver';
-import { testkitFactoryCreator } from 'wix-ui-test-utils/vanilla';
 // TODO - add tooltip classic driver in the correct place
 import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
 import textDriverFactory from '../Text/Text.driver';
